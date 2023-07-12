@@ -193,6 +193,10 @@ function myCountry() {
         console.log(`Getting position...`);
     });
 }
+function waiting(){
+    countriesContainer.innerHTML = `<p class=" waiting"><b> ℹ️) Getting locaition..</b> if the processe take a lot of time, please slowly reload the page or <a target = "_blank" href="https://discordapp.com/users/882452170631421993">contact with the developer</a> </p>.`
+    countriesContainer.style.opacity = 1;
+}
 
 // Waiting fn, competition promise:
 /*
@@ -221,6 +225,8 @@ function myCountry() {
 // Async/Await
 async function whereAmINew() {
     try {
+        waiting()
+        let wait = document.querySelector(".waiting")
         let pos = await myCountry();
         let { latitude: lat, longitude: lon } = pos.coords;
         let resGeo = await fetch(
@@ -239,6 +245,7 @@ async function whereAmINew() {
         );
         if (!response.ok) throw new Error(`getting your country`);
         let data = await response.json();
+            wait.style.display = "none"
         countryStructure(
             data[0],
             false,
@@ -247,7 +254,7 @@ async function whereAmINew() {
         return `You are in ${dataGeo.features[0].properties.display_name}`;
     } catch (err) {
         renderError(
-            `⚠ A problem happened : ${err.message}, Please slowly reload the page or <a target = "_blank" href="https://discordapp.com/users/882452170631421993">contact with the developer</a>..`
+            `<b>⚠ A problem happened :</b> ${err.message}, Please slowly reload the page or <a target = "_blank" href="https://discordapp.com/users/882452170631421993">contact with the developer</a>..`
         );
         // throw err;
     }
