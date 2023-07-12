@@ -251,13 +251,13 @@ async function whereAmINew() {
     }
 }
 
-(async () => {
-    try {
-        let city = whereAmINew();
-        console.log(`1: `, city);
-    } catch (err) {console.log(`2: `, err)}
-    console.log(`3: Finished!`)
-})();
+// (async () => {
+//     try {
+//         let city = whereAmINew();
+//         console.log(`1: `, city);
+//     } catch (err) {console.log(`2: `, err)}
+//     console.log(`3: Finished!`)
+// })();
 
 btn.addEventListener("click", function (e) {
     whereAmINew();
