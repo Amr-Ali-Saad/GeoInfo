@@ -224,7 +224,8 @@ async function whereAmINew() {
         let pos = await myCountry();
         let { latitude: lat, longitude: lon } = pos.coords;
         let resGeo = await fetch(
-            `https://nominatim.openstreetmap.org/reverse?format=geojson&lat=${lat}&lon=${lon}`
+            `https://nominatim.openstreetmap.org/reverse?format=geojson&lat=${lat}&lon=${lon}`, 
+            { headers: { 'Accept-Language': 'en-US,en;q=0.9' } }
         );
         if (!resGeo.ok) throw new Error(`reading your coordinates`);
 
@@ -233,7 +234,6 @@ async function whereAmINew() {
         let curCountry = dataGeo.features[0].properties.display_name
             .split(", ")
             .slice(-1)[0];
-
         let response = await fetch(
             `https://restcountries.com/v3.1/name/${curCountry}`
         );
@@ -246,8 +246,10 @@ async function whereAmINew() {
         );
         return `You are in ${dataGeo.features[0].properties.display_name}`;
     } catch (err) {
-        renderError(`⚠ A problem happened with ${err.message}, Please reload the page!`);
-        throw err
+        renderError(
+            `⚠ A problem happened with ${err.message}, Please slowly reload the page or contact with the developer..`
+        );
+        // throw err;
     }
 }
 
@@ -255,8 +257,10 @@ async function whereAmINew() {
 //     try {
 //         let city = whereAmINew();
 //         console.log(`1: `, city);
-//     } catch (err) {console.log(`2: `, err)}
-//     console.log(`3: Finished!`)
+//     } catch (err) {
+//         console.log(`2: `, err);
+//     }
+//     console.log(`3: Finished!`);
 // })();
 
 btn.addEventListener("click", function (e) {
