@@ -133,7 +133,7 @@ function fetchCountryDataONB(country, neighbour = false) {
         });
 }
 function renderError(msg) {
-    countriesContainer.innerHTML = msg + " <br> ";
+    countriesContainer.innerHTML = `<p class="error">${msg}</p><br>`;
     countriesContainer.style.opacity = 1;
 }
 function simpleRenderCountry(country) {
@@ -247,16 +247,17 @@ async function whereAmINew() {
         return `You are in ${dataGeo.features[0].properties.display_name}`;
     } catch (err) {
         renderError(
-            `⚠ A problem happened with ${err.message}, Please slowly reload the page or contact with the developer..`
+            `⚠ A problem happened : ${err.message}, Please slowly reload the page or <a target = "_blank" href="https://discordapp.com/users/882452170631421993">contact with the developer</a>..`
         );
         // throw err;
     }
 }
 
 // (async () => {
+//     console.log(`1: Getting locaition`)
 //     try {
-//         let city = whereAmINew();
-//         console.log(`1: `, city);
+//         let city = await whereAmINew();
+//         console.log(`2: `, city);
 //     } catch (err) {
 //         console.log(`2: `, err);
 //     }

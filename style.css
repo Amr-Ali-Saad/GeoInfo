@@ -130,3 +130,17 @@ body {
   border: 3rem solid white;
   box-shadow: 0 2rem 5rem 1rem rgba(0, 0, 0, 0.1);
 }
+
+.error {
+  background-color: #290000;
+  color: #f24919;
+  border-radius: 10px;
+  padding: 25px;
+  font-size: 21px;
+  text-align: center;
+  border: 3px solid #f24919;
+}
+
+.error a {
+  color: #2196f3cf;
+}
