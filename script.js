@@ -224,7 +224,7 @@ async function whereAmINew() {
         let pos = await myCountry();
         let { latitude: lat, longitude: lon } = pos.coords;
         let resGeo = await fetch(
-            `https//nominatim.openstreetmap.org/reverse?format=geojson&lat=${lat}&lon=${lon}`
+            `https://nominatim.openstreetmap.org/reverse?format=geojson&lat=${lat}&lon=${lon}`
         );
         if (!resGeo.ok) throw new Error(`reading your coordinates`);
 
